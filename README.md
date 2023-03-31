@@ -14,3 +14,13 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+
+# Especificações - Pokedex
+
+* Estrutura MVC por módulos
+* Bloc - Gerenciamento de estado
+* Modular - Injenção de dependencia
+* SQLite - Plugin nativo em kotlin para armazenamento persistente dos pokemons customizados
+* MethodChannel - Para comunição Dart com linguagem nativa android (Kotlin) e utilizar os métodos criados de armazenamento no nativo
