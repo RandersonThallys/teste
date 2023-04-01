@@ -1,4 +1,4 @@
-# pokedex
+# Especificações - Pokedex
 
 A new Flutter project.
 

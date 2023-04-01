@@ -15,8 +15,8 @@ class PokemonRepository {
   });
   static const platform = MethodChannel('flutter.pokedex');
 
-  Future<List<PokemonModel>> getAllPokemons(int offset) async{
-    String url = 'https://pokeapi.co/api/v2/pokemon?offset=$offset&limit=20';
+  Future<List<PokemonModel>> getAllPokemons(int offset, bool isLastPage) async{
+    String url = 'https://pokeapi.co/api/v2/pokemon?offset=$offset&limit=100';
     List<PokemonModel> pokemons = [];
 
      var response = await httpService.get(url);
@@ -25,16 +25,10 @@ class PokemonRepository {
     for (Map i in jsonPokemonsName['results']) {
       var responsePokemon = await httpService.get(i['url']);
       var jsonPokemon = jsonDecode(responsePokemon.body);
-      var specieResponse = await httpService.get(jsonPokemon['species']['url']);
-      var specieMap = jsonDecode(specieResponse.body);
-      for (Map j in specieMap['flavor_text_entries']) {
-        if (j['version']['name'] == 'ruby') {
-          jsonPokemon['description'] = j['flavor_text'];
-        }
-      }
       listPokemonsMap.add(jsonPokemon);
       pokemons = listPokemonsMap.map((e) => PokemonAdapter.fromMap(e as Map<String,dynamic>)).toList();
     }
+    
 
     
 

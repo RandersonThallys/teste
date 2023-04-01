@@ -1,19 +1,28 @@
 import 'package:pokedex/src/shared/pokemon_core/model/pokemon_model.dart';
 
 abstract class PokemonsListStates {
-  static PokemonsListSuccessState success({required List<PokemonModel> pokemons}) =>
+  final List<PokemonModel> pokemons;
+
+  PokemonsListStates({required this.pokemons});
+
+  PokemonsListSuccessState success(
+          {required List<PokemonModel> pokemons}) =>
       PokemonsListSuccessState(pokemons: pokemons);
+
+  PokemonsListLoadingState loading(){
+      return PokemonsListLoadingState(pokemons: pokemons);
+
+  }
 }
 
 class PokemonsListInitialState extends PokemonsListStates {
-  List<PokemonModel> pokemons = [];
-
-  
+  PokemonsListInitialState() : super(pokemons: []);
 }
 
-
+class PokemonsListLoadingState extends PokemonsListStates {
+  PokemonsListLoadingState({required super.pokemons});
+}
 
 class PokemonsListSuccessState extends PokemonsListStates {
-  final List<PokemonModel> pokemons;
-  PokemonsListSuccessState({required this.pokemons});
+  PokemonsListSuccessState({required super.pokemons});
 }

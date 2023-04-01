@@ -9,13 +9,15 @@ class PokemonsController {
 
   PagingController<int, PokemonModel> pagingController = PagingController(firstPageKey: 1);
   int offset = 0;
+  bool lastPage = false;
 
   Future<List<PokemonModel>> getPokemonsList() async {
     try {
-      var result = await repository.getAllPokemons(offset);
+      var result = await repository.getAllPokemons(offset,lastPage);
 
-      //offset += 20;
-
+      offset += 100;
+      if(result.length < 100) lastPage = true;
+      print(lastPage);
       return result;
     } catch (e) {
       rethrow;

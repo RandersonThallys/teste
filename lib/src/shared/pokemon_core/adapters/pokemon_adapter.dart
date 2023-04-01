@@ -4,8 +4,8 @@ class PokemonAdapter{
     static PokemonModel fromMap(Map map) {
     int id = map['id'];
     String name = map['name'];
-    String sprite = map['sprites']['front_default'];
-    String description = map['description'];
+    String sprite = map['sprites']['front_default'] ?? '';
+    
     Map<String, int> stats = {};
     for (Map i in map['stats']) {
       stats[i['stat']['name']] = i['base_stat'];
@@ -17,7 +17,7 @@ class PokemonAdapter{
     return PokemonModel(
       id: id,
       name: name,
-      description: description,
+      description: '',
       sprite: sprite,
       stats: stats,
       types: types,

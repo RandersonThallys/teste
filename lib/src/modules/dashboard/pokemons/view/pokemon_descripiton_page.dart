@@ -48,7 +48,7 @@ class _PokemonDescriptionPageState extends State<PokemonDescriptionPage> {
                       top: Radius.circular(
                           MediaQuery.of(context).size.width * 0.12),
                     ),
-                    color: Colors.white,
+                    color: Theme.of(context).cardColor,
                   ),
                   child: ListView(
                     children: [
